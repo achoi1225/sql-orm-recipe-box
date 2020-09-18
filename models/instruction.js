@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Instructions = sequelize.define('Instructions', {
+  const Instruction = sequelize.define('Instruction', {
     specification: DataTypes.TEXT,
     listOrder: DataTypes.INTEGER,
     recipeId: DataTypes.INTEGER
   }, {});
-  Instructions.associate = function (models) {
-    Instructions.belongsTo(models.Recipes, { foreignKey: 'recipeId' });
+  Instruction.associate = function (models) {
+    Instruction.belongsTo(models.Recipe, { foreignKey: 'recipeId' });
   };
-  return Instructions;
+  return Instruction;
 };
