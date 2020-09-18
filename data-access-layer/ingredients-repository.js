@@ -1,7 +1,6 @@
 const { Op } = require('sequelize');
 let Ingredient;
 let moduleError;
-
 try {
   const db = require('../models');
   ({ Ingredient } = db);
@@ -25,8 +24,6 @@ async function createNewIngredient(amount, recipeId, measurementUnitId, foodStuf
   //
   // Docs: https://sequelize.org/v5/manual/instances.html#creating-persistent-instances
 }
-
-
 
 /* Don't change code below this line ******************************************/
 module.exports = {

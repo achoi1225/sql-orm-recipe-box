@@ -5,6 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   MeasurementUnit.associate = function(models) {
     MeasurementUnit.hasMany(models.Ingredient, { foreignKey: 'measurementUnitId'});
+
   };
+
   return MeasurementUnit;
 };

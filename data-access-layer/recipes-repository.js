@@ -1,7 +1,6 @@
 const { Op } = require('sequelize');
 let Recipe, Instruction, Ingredient, MeasurementUnit;
 let moduleError;
-
 try {
   const db = require('../models');
   ({ Recipe, Instruction, Ingredient, MeasurementUnit } = db);
@@ -19,7 +18,6 @@ try {
 /* Don't change code above this line ******************************************/
 
 
-
 async function getTenNewestRecipes() {
   // Use the findAll method of the Recipe object to return the recipes.
   // Use the options for findAll to **limit** the number of objects and order it
@@ -32,7 +30,6 @@ async function getTenNewestRecipes() {
   // Model.findAll({
   //     { ... specify your options here... }
   // });
-  //
   // Docs: https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findAll
 }
 
@@ -54,7 +51,7 @@ async function getRecipeById(id) {
   //     }
   //   ]
   // });
-  //
+  
   // Look at the data model in the instructions to see the relations between the
   // Recipe table and the Ingredients and Instructions table. Figure out which
   // of them goes into that form above as "firstDataModel" and
@@ -84,14 +81,13 @@ async function deleteRecipe(id) {
 async function createNewRecipe(title) {
   // Use the create method of the Recipe object to create a new object and
   // return it.
-  //
   // Docs: https://sequelize.org/v5/manual/instances.html#creating-persistent-instances
 }
 
 async function searchRecipes(term) {
   // Use the findAll method of the Recipe object to search for recipes with the
   // given term in its title
-  //
+
   // Docs: https://sequelize.org/v5/manual/querying.html
 }
 

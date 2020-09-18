@@ -16,7 +16,6 @@ function handleError(e, data, property, fileName) {
   console.error(e);
   data[property] = `An error occurred while running the SQL in ${fileName} that reads "${e.message}". Check the console for errors.`
 }
-
 router.post('/', async (req, res) => {
   try {
     const recipeId = Number.parseInt(req.body.recipeId);

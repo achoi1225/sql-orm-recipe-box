@@ -28,5 +28,4 @@ router.post('/', async (req, res) => {
     res.redirect('/recipes/' + req.body.recipeId + '/edit?ingredientInsertError=' + e.message);
   }
 });
-
 module.exports = router;

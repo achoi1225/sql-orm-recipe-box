@@ -1,7 +1,6 @@
 const { Op } = require('sequelize');
 let Instruction;
 let moduleError;
-
 try {
   const db = require('../models');
   ({ Instruction } = db);
@@ -28,9 +27,9 @@ async function createNewInstruction(specification, recipeId) {
   // return it using the maximum listOrder from the query just before this.
   //
   // Docs: https://sequelize.org/v5/manual/instances.html#creating-persistent-instances
+
+
 }
-
-
 
 /* Don't change code below this line ******************************************/
 module.exports = {

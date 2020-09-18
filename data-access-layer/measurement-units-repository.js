@@ -1,6 +1,5 @@
 let MeasurementUnit;
 let moduleError;
-
 try {
   const db = require('../models');
   ({ MeasurementUnit } = db);
