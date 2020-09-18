@@ -1,22 +1,21 @@
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 let Recipe, Instruction, Ingredient, MeasurementUnit;
 let moduleError;
 try {
-  const db = require('../models');
+  const db = require("../models");
   ({ Recipe, Instruction, Ingredient, MeasurementUnit } = db);
   if (Recipe === undefined) {
-    moduleError = 'It looks like you need to generate the Recipe model.';
+    moduleError = "It looks like you need to generate the Recipe model.";
   }
 } catch (e) {
   console.error(e);
-  if (e.message.includes('Cannot find module')) {
-    moduleError = 'It looks like you need initialize your project.';
+  if (e.message.includes("Cannot find module")) {
+    moduleError = "It looks like you need initialize your project.";
   } else {
     moduleError = `An error was raised "${e.message}". Check the console for details.`;
   }
 }
 /* Don't change code above this line ******************************************/
-
 
 async function getTenNewestRecipes() {
   // Use the findAll method of the Recipe object to return the recipes.
@@ -31,6 +30,11 @@ async function getTenNewestRecipes() {
   //     { ... specify your options here... }
   // });
   // Docs: https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findAll
+
+  let firstTenRecipes = await Recipe.findAll({
+    limit: 10,
+  });
+  return firstTenRecipes;
 }
 
 async function getRecipeById(id) {
@@ -51,7 +55,6 @@ async function getRecipeById(id) {
   //     }
   //   ]
   // });
-  
   // Look at the data model in the instructions to see the relations between the
   // Recipe table and the Ingredients and Instructions table. Figure out which
   // of them goes into that form above as "firstDataModel" and
@@ -68,6 +71,17 @@ async function getRecipeById(id) {
   // Here are links to the wholly-inadequate docs for this.
   // Docs: https://sequelize.org/v5/manual/models-usage.html#eager-loading
   //       https://sequelize.org/v5/manual/models-usage.html#nested-eager-loading
+
+  let recipe = Recipe.findByPk(id, {
+    include: [
+      Instruction,
+      {
+        model: Ingredient,
+        include: MeasurementUnit,
+      },
+    ],
+  });
+  return recipe;
 }
 
 async function deleteRecipe(id) {
@@ -87,12 +101,8 @@ async function createNewRecipe(title) {
 async function searchRecipes(term) {
   // Use the findAll method of the Recipe object to search for recipes with the
   // given term in its title
-
   // Docs: https://sequelize.org/v5/manual/querying.html
 }
-
-
-
 
 /* Don't change code below this line ******************************************/
 module.exports = {
