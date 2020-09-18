@@ -1,4 +1,5 @@
 const { Op } = require("sequelize");
+const { sequelize } = require("../models");
 let Recipe, Instruction, Ingredient, MeasurementUnit;
 let moduleError;
 try {
@@ -88,7 +89,18 @@ async function deleteRecipe(id) {
   // Use the findByPk method of the Recipe object to get the object and, then,
   // destroy it. Or, use the Model.destroy({ ... where ... }) method that you
   // saw in the video.
-  //
+  
+  let recipe = await Recipe.findByPk(id);
+  await recipe.destroy();
+
+  // await Recipe.destroy({
+  //   where: {
+  //     id: 1
+  //   }
+  // });
+
+  // await sequelize.close();
+
   // Docs: https://sequelize.org/master/class/lib/model.js~Model.html#instance-method-destroy
 }
 
